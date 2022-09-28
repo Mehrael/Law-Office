@@ -28,7 +28,7 @@ if (isset($_POST['update'])) {
 
         $x = move_uploaded_file($image_tmpname, $location);
     } else {
-        $location = "";
+        $location = $article['image'];
     }
 
     $insert = "UPDATE `articles` SET title='$title',`description`='$desc',`image`='$location',updated_time=DEFAULT WHERE id=$id";

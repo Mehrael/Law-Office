@@ -35,7 +35,7 @@ if (isset($_POST['edit'])) {
 
         $x = move_uploaded_file($image_tmpname, $location);
     } else {
-        $location = "";
+        $location = $e['image'];
     }
     // echo $id;
     $query = "UPDATE `admin` SET `name`='$name',age=$age,`address`='$address',phone='$phone',email='$email',`password`='$password',`image`='$location', `role`=$access WHERE id = $id";

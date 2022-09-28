@@ -36,7 +36,6 @@ include '../shared/aside.php';
                 $updated = $ar['updated_time'];
                 if (strpos($auth_id, 'a_') !== false) {
                     $id = (int)filter_var($auth_id, FILTER_SANITIZE_NUMBER_INT);
-
                     $admins = mysqli_query($connection, "SELECT * FROM `admin` WHERE id=$id");
 
                     $e = mysqli_fetch_assoc($admins);
@@ -69,18 +68,18 @@ include '../shared/aside.php';
                                     <?php echo $auth_name ?>
                                 </h5>
                                 <?php if ($img !== "") { ?>
-                                    <img src='<?php echo $img ?>' class='card-img-top'> 
-                                    <?php } ?>
+                                    <img src='<?php echo $img ?>' class='card-img-top'>
+                                <?php } ?>
                                 <div class='card-body'>
                                     <h5 class='card-title'> <?php echo $title ?></h5>
                                     <p class='card-text'><?php echo $desc ?></p>
-                                    
-                               <?php if($updated != 0){ ?>
-                               <p class='card-text'><small class='text-muted'>Updated at <?php echo $updated ?></small></p>
-                               <?php }else{ ?>
-                                <p class='card-text'><small class='text-muted'>Created at <?php echo $create ?></small></p>
-                                <?php } ?>
-                             </div>
+
+                                    <?php if ($updated != 0) { ?>
+                                        <p class='card-text'><small class='text-muted'>Updated at <?php echo $updated ?></small></p>
+                                    <?php } else { ?>
+                                        <p class='card-text'><small class='text-muted'>Created at <?php echo $create ?></small></p>
+                                    <?php } ?>
+                                </div>
                             </div>
                         </div>
                     </div>

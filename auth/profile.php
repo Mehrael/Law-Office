@@ -13,6 +13,7 @@ if ($_SESSION['isAdmin']) {
     $lawyers = mysqli_query($connection, "SELECT * FROM `lawyers` WHERE id=$id");
     // print_r($admins);
     $e = mysqli_fetch_assoc($lawyers);
+    $role = 0;
 }
 
 $alert = false;
@@ -35,10 +36,10 @@ if (isset($_POST['change'])) {
 
                 if (!$query) {
                     $re_enter = true;
-                } 
+                }
             }
         }
-    }else {
+    } else {
         $alert = true;
     }
 }
@@ -61,7 +62,7 @@ if (isset($_POST['update'])) {
 
         $x = move_uploaded_file($image_tmpname, $location);
     } else {
-        $location = "";
+        $location = $e['image'];
     }
     // echo $id;
     $query = "UPDATE `admin` SET `name`='$name',age=$age,`address`='$address',phone='$phone',email='$email',`image`='$location' WHERE id = $id";
@@ -168,19 +169,20 @@ if (isset($_POST['update'])) {
                                             <div class="col-lg-9 col-md-8"><?php echo $e['email'] ?></div>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">Role</div>
-                                            <div class="col-lg-9 col-md-8">
-                                                <?php if ($e['role'] == 1) {
-                                                    echo "Add admin, lawyer, and articles." . "<br>";
-                                                } else if ($e['role'] == 2) {
-                                                    echo "Add lawyer, and articles." . "<br>";
-                                                } else {
-                                                    echo "Add only articles." . "<br>";
-                                                } ?>
-                                            </div>
-                                        </div>
+                                        <?php if (!$_SESSION['isAdmin']) { ?> <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">Role</div>
+                                                <div class="col-lg-9 col-md-8">
+                                                    <?php if ($role == 1) {
+                                                        echo "Add admin, lawyer, and articles." . "<br>";
+                                                    } else if ($role == 2) {
+                                                        echo "Add lawyer, and articles." . "<br>";
+                                                    } else {
+                                                        echo "Add only articles." . "<br>";
+                                                    } ?>
+                                                </div>
 
+                                            </div>
+                                        <?php } ?>
 
                                     </div>
 

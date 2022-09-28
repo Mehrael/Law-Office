@@ -32,7 +32,7 @@ if (isset($_POST['edit'])) {
 
         $x = move_uploaded_file($image_tmpname, $location);
     } else {
-        $location = "";
+        $location = $e['image'];
     }
 
     // echo $id;
