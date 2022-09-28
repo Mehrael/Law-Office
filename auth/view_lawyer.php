@@ -30,7 +30,9 @@ $e = mysqli_fetch_assoc($lawyers);
                 </nav>
             </div>
             <div class="card" style="width: 22rem; align-items:center; ">
+            <?php if ($e['image'] !== "") { ?>      
                 <img src="<?php echo $e['image'] ?>" class="card-img-top" alt="...">
+                <?php } ?>
                 <div class="card-body">
                     <p class="card-text">
                         Name: <?php echo $e['name'] . '<br>' ?>
